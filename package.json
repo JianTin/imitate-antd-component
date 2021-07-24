@@ -1,0 +1,47 @@
+{
+  "name": "imitate-antd-component",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rimraf dist es lib ",
+    "compite": "npm run clean && cross-env NODE_ENV=compite gulp --gulpfile config/gulpfile.js compite",
+    "dev": "npm run clean && cross-env NODE_ENV=development gulp --gulpfile config/gulpfile.js dev"
+  },
+  "author": "lijianhao",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.14.5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "rimraf": "^3.0.2",
+    "cross-env": "^7.0.3",
+    "less": "^4.1.1",
+    "@babel/plugin-transform-object-assign": "^7.14.5",
+    "postcss-preset-env": "^6.7.0",
+    "browser-sync": "^2.27.4",
+    "gulp-concat": "^2.6.1",
+    "gulp-less": "^5.0.0",
+    "gulp-notify": "^4.0.0",
+    "gulp-postcss": "^9.0.0",
+    "gulp-uglify": "^3.0.2",
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.7",
+    "@babel/preset-react": "^7.14.5",
+    "babel-plugin-inline-import-data-uri": "^1.0.1",
+    "babelify": "^10.0.0",
+    "browserify": "^17.0.0",
+    "cssnano": "^5.0.6",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "merge2": "^1.4.1",
+    "postcss": "^8.3.5",
+    "through2": "^4.0.2",
+    "vinyl-source-stream": "^2.0.0"
+  }
+}

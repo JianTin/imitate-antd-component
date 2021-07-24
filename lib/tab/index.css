@@ -1,0 +1,123 @@
+.imitate-tab {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.imitate-tab .imitate-tab-header {
+  position: relative;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.imitate-tab .imitate-tab-header .imitate-tab-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+.imitate-tab .imitate-tab-header .imitate-tab-list .imitate-tab-item {
+  height: 40px;
+  line-height: 40px;
+  font-size: 13px;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+}
+.imitate-tab .imitate-tab-header .imitate-tab-list .imitate-tab-item:hover {
+  color: #40a9ff;
+}
+.imitate-tab .imitate-tab-header .imitate-tab-list .imitate-tab-item.imitate-tab-item-active {
+  color: #1890ff;
+}
+.imitate-tab .imitate-tab-header .imitate-tab-ink-animated {
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  position: absolute;
+  background-color: #1890ff;
+}
+.imitate-tab .imitate-tab-body {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+}
+.imitate-tab-top {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.imitate-tab-top .imitate-tab-header {
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 20px;
+}
+.imitate-tab-top .imitate-tab-header .imitate-tab-list .imitate-tab-item + .imitate-tab-item {
+  margin-left: 20px;
+}
+.imitate-tab-top .imitate-tab-header .imitate-tab-ink-animated {
+  bottom: -1px;
+}
+.imitate-tab-bottom {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.imitate-tab-bottom .imitate-tab-header {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+  border-top: 1px solid #f0f0f0;
+  margin-top: 20px;
+}
+.imitate-tab-bottom .imitate-tab-header .imitate-tab-list .imitate-tab-item + .imitate-tab-item {
+  margin-left: 20px;
+}
+.imitate-tab-bottom .imitate-tab-header .imitate-tab-ink-animated {
+  top: -1px;
+}
+.imitate-tab-left .imitate-tab-header {
+  border-right: 1px solid #f0f0f0;
+  margin-right: 20px;
+}
+.imitate-tab-left .imitate-tab-header .imitate-tab-list {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.imitate-tab-left .imitate-tab-header .imitate-tab-list .imitate-tab-item {
+  margin: 0 15px;
+}
+.imitate-tab-left .imitate-tab-header .imitate-tab-list .imitate-tab-item + .imitate-tab-item {
+  margin-top: 20px;
+}
+.imitate-tab-left .imitate-tab-header .imitate-tab-ink-animated {
+  right: -1px;
+}
+.imitate-tab-right .imitate-tab-header {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+  border-left: 1px solid #f0f0f0;
+  margin-left: 20px;
+}
+.imitate-tab-right .imitate-tab-header .imitate-tab-list {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.imitate-tab-right .imitate-tab-header .imitate-tab-list .imitate-tab-item {
+  margin: 0 15px;
+}
+.imitate-tab-right .imitate-tab-header .imitate-tab-list .imitate-tab-item + .imitate-tab-item {
+  margin-top: 20px;
+}
+.imitate-tab-right .imitate-tab-header .imitate-tab-ink-animated {
+  left: -1px;
+}

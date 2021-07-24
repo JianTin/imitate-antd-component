@@ -1,0 +1,202 @@
+:root {
+  --btn-color: #1890ff;
+  --btn-color-hover: #40a9ff;
+  --btn-color-active: #096dd9;
+  --btn-danger-color: #ff4d4f;
+  --btn-danger-color-hover: #ff7875;
+  --btn-danger-color-active: #d9363e;
+}
+.imitate-btn {
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  padding: 5px 15px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: 2px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  border: 1px solid transparent;
+}
+.imitate-btn-primary {
+  border-color: #1890ff;
+  border-color: var(--btn-color);
+  background-color: #1890ff;
+  background-color: var(--btn-color);
+  color: white;
+}
+.imitate-btn-primary:hover {
+  background-color: #40a9ff;
+  background-color: var(--btn-color-hover);
+  border-color: #40a9ff;
+  border-color: var(--btn-color-hover);
+}
+.imitate-btn-primary:active {
+  background-color: #096dd9;
+  background-color: var(--btn-color-active);
+  border-color: #096dd9;
+  border-color: var(--btn-color-active);
+}
+.imitate-btn-default {
+  border-style: solid;
+}
+.imitate-btn-dashed {
+  border-style: dashed;
+}
+.imitate-btn-default,
+.imitate-btn-dashed {
+  border-color: #d9d9d9;
+}
+.imitate-btn-default:hover,
+.imitate-btn-dashed:hover {
+  color: #40a9ff;
+  color: var(--btn-color-hover);
+  border-color: #40a9ff;
+  border-color: var(--btn-color-hover);
+}
+.imitate-btn-default:active,
+.imitate-btn-dashed:active {
+  color: #096dd9;
+  color: var(--btn-color-active);
+  border-color: #096dd9;
+  border-color: var(--btn-color-active);
+}
+.imitate-btn-text {
+  border-color: white;
+  background-color: white;
+}
+.imitate-btn-text:hover {
+  border-color: rgba(0, 0, 0, 0.018);
+  background-color: rgba(0, 0, 0, 0.018);
+}
+.imitate-btn-text:active {
+  border-color: rgba(0, 0, 0, 0.028);
+  background-color: rgba(0, 0, 0, 0.028);
+}
+.imitate-btn-link {
+  color: #1890ff;
+  color: var(--btn-color);
+}
+/* 正常情况下的 危险 */
+.imitate-btn[danger] {
+  color: #ff4d4f;
+  color: var(--btn-danger-color);
+}
+.imitate-btn-default[danger],
+.imitate-btn-default[danger],
+.imitate-btn-primary[danger] {
+  border-color: #ff4d4f;
+  border-color: var(--btn-danger-color);
+}
+.imitate-btn-primary[danger] {
+  background-color: #ff4d4f;
+  background-color: var(--btn-danger-color);
+}
+/* hover情况下的 危险 */
+.imitate-btn-default[danger]:hover,
+.imitate-btn-default[danger]:hover,
+.imitate-btn-primary[danger]:hover {
+  border-color: #ff7875;
+  border-color: var(--btn-danger-color-hover);
+  color: #ff7875;
+  color: var(--btn-danger-color-hover);
+}
+.imitate-btn-primary[danger]:hover {
+  background-color: #ff7875;
+  background-color: var(--btn-danger-color-hover);
+  color: white;
+}
+/* active情况下的 危险 */
+.imitate-btn-default[danger]:active,
+.imitate-btn-default[danger]:active,
+.imitate-btn-primary[danger]:active {
+  border-color: #d9363e;
+  border-color: var(--btn-danger-color-active);
+  color: #d9363e;
+  color: var(--btn-danger-color-active);
+}
+.imitate-btn-primary[danger]:active {
+  background-color: #d9363e;
+  background-color: var(--btn-danger-color-active);
+  color: white;
+}
+/* 禁用 */
+.imitate-btn[disabled] {
+  color: rgba(0,0,0,0.25098);
+  cursor: not-allowed;
+}
+.imitate-btn-primary[disabled],
+.imitate-btn-default[disabled],
+.imitate-btn-dashed[disabled] {
+  background-color: #f5f5f5;
+  border-color: #d9d9d9;
+}
+/* 动画 */
+.imitate-btn-animation-click {
+  -webkit-animation-name: click-animation;
+          animation-name: click-animation;
+  -webkit-animation-duration: 0.6s;
+          animation-duration: 0.6s;
+}
+@-webkit-keyframes click-animation {
+  0% {
+    -webkit-box-shadow: 0 0 0px 0px rgba(24,143,255,0.78824);
+            box-shadow: 0 0 0px 0px rgba(24,143,255,0.78824);
+  }
+  80% {
+    -webkit-box-shadow: 0 0 0px 5px rgba(24,143,255,0.03922);
+            box-shadow: 0 0 0px 5px rgba(24,143,255,0.03922);
+  }
+  100% {
+    -webkit-box-shadow: 0 0 0px 5px white;
+            box-shadow: 0 0 0px 5px white;
+  }
+}
+@keyframes click-animation {
+  0% {
+    -webkit-box-shadow: 0 0 0px 0px rgba(24,143,255,0.78824);
+            box-shadow: 0 0 0px 0px rgba(24,143,255,0.78824);
+  }
+  80% {
+    -webkit-box-shadow: 0 0 0px 5px rgba(24,143,255,0.03922);
+            box-shadow: 0 0 0px 5px rgba(24,143,255,0.03922);
+  }
+  100% {
+    -webkit-box-shadow: 0 0 0px 5px white;
+            box-shadow: 0 0 0px 5px white;
+  }
+}
+.imitate-btn-animation-click[danger] {
+  -webkit-animation-name: danger-click-animation;
+          animation-name: danger-click-animation;
+}
+@-webkit-keyframes danger-click-animation {
+  0% {
+    -webkit-box-shadow: 0 0 0px 0px rgba(220, 60, 68, 0.808);
+            box-shadow: 0 0 0px 0px rgba(220, 60, 68, 0.808);
+  }
+  80% {
+    -webkit-box-shadow: 0 0 0px 5px rgba(220, 60, 68, 0.144);
+            box-shadow: 0 0 0px 5px rgba(220, 60, 68, 0.144);
+  }
+  100% {
+    -webkit-box-shadow: 0 0 0px 5px white;
+            box-shadow: 0 0 0px 5px white;
+  }
+}
+@keyframes danger-click-animation {
+  0% {
+    -webkit-box-shadow: 0 0 0px 0px rgba(220, 60, 68, 0.808);
+            box-shadow: 0 0 0px 0px rgba(220, 60, 68, 0.808);
+  }
+  80% {
+    -webkit-box-shadow: 0 0 0px 5px rgba(220, 60, 68, 0.144);
+            box-shadow: 0 0 0px 5px rgba(220, 60, 68, 0.144);
+  }
+  100% {
+    -webkit-box-shadow: 0 0 0px 5px white;
+            box-shadow: 0 0 0px 5px white;
+  }
+}

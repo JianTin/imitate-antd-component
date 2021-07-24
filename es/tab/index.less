@@ -1,0 +1,113 @@
+@import url(../index.less);
+// 公共属性
+// bar 的width/height 以及 如何移动。均由js控制
+.imitate-tab {
+    display: flex;
+    .imitate-tab-header {
+        position: relative;
+        flex-shrink: 0; // 不被 body 挤压
+        display: flex; // header display，可能有额外元素 需要进行排序
+        .imitate-tab-list {
+            display: flex; // list display，兼容各种情况的排序
+            width: 100%; // 保证 left、right 的位置 
+            height: 100%;
+            .imitate-tab-item {
+                height: 40px;
+                line-height: 40px;
+                font-size: 13px;
+                display: inline-block;
+                cursor: pointer;
+                text-align: center;
+                &:hover {
+                    color: #40a9ff;
+                }
+                &.imitate-tab-item-active {
+                    color: #1890ff;
+                }
+            }
+        }
+        .imitate-tab-ink-animated {
+            transition: all 0.3s;
+            position: absolute;
+            background-color: #1890ff;
+        }
+    }
+    .imitate-tab-body {
+        box-sizing: border-box;
+        padding: 10px;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.imitate-tab-top {
+    flex-direction: column;
+    .imitate-tab-header {
+        .shallowBorderBottom();
+        margin-bottom: 20px;
+        .imitate-tab-list {
+            .imitate-tab-item+.imitate-tab-item {
+                margin-left: 20px;
+            }
+        }
+        .imitate-tab-ink-animated {
+            bottom: -1px;
+        }
+    }
+}
+
+.imitate-tab-bottom {
+    flex-direction: column;
+    .imitate-tab-header {
+        order: 1;
+        .shallowBorderTop();
+        margin-top: 20px;
+        .imitate-tab-list {
+            .imitate-tab-item+.imitate-tab-item {
+                margin-left: 20px;
+            }
+        }
+        .imitate-tab-ink-animated {
+            top: -1px;
+        }
+    }
+}
+
+.imitate-tab-left {
+    .imitate-tab-header {
+        .shallowBorderRight();
+        margin-right: 20px;
+        .imitate-tab-list {
+            flex-direction: column;
+            .imitate-tab-item{
+                margin: 0 15px;
+                &+.imitate-tab-item {
+                    margin-top: 20px;
+                }
+            }
+        }
+        .imitate-tab-ink-animated {
+            right: -1px;
+        }
+    }
+}
+
+.imitate-tab-right {
+    .imitate-tab-header {
+        order: 1;
+        .shallowBorderLeft();
+        margin-left: 20px;
+        .imitate-tab-list {
+            flex-direction: column;
+            .imitate-tab-item {
+                margin: 0 15px;
+                &+.imitate-tab-item {
+                    margin-top: 20px;
+                }
+            }
+        }
+        .imitate-tab-ink-animated {
+            left: -1px;
+        }
+    }
+}
