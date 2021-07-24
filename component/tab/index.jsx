@@ -25,18 +25,18 @@ export default class Tab extends PureComponent {
         onChange: ()=>{}, // 更改标签时触发
         onClick: ()=>{}, // 点击标签时触发
         tabPosition: 'top', // 位置
-        extraTabLeft: '',// 额外元素
-        extraTabRight: '',// 额外元素
+        extraTabLeft: null,// 额外元素
+        extraTabRight: null,// 额外元素
         inkStyle: {}, // 标识的style
         barItemStyle: {} // itemStyle
     }
     componentWillMount(){
-        this.storePosition = this.props.position
+        this.storePosition = this.props.tabPosition
         this.initGetChildrenList()
     }
     componentDidUpdate(){
         const {props, state, resultListArray, changSelectTab, initGetChildrenList, storePosition} = this
-        const {activeKey, position} = props
+        const {activeKey, tabPosition} = props
         const {selectKey, tabItem} = state
         const listLength = resultListArray().length
         // activeKey有，并且 内部和外部的 key 不同，更新
@@ -44,8 +44,8 @@ export default class Tab extends PureComponent {
             changSelectTab(activeKey)
         }
         // position 不一样，使用存储的selectKey更新
-        if(storePosition!==position ){
-            this.storePosition = position
+        if(storePosition!== tabPosition ){
+            this.storePosition = tabPosition
             changSelectTab(selectKey)
         }
         // 数量不同 更新
@@ -89,8 +89,10 @@ export default class Tab extends PureComponent {
     tabClick = (event)=>{
         const key = event.target.id
         // 有activeKey 就不需要触发 更改select事件
+        // key 和 selectKey 一样，那么不需要触发
         const {activeKey, onClick} = this.props
-        if(!activeKey) this.changSelectTab(key)
+        const {selectKey} = this.state
+        if(!activeKey && key !== selectKey) this.changSelectTab(key)
         onClick(key, event)
     }
 
@@ -119,12 +121,12 @@ export default class Tab extends PureComponent {
 
     // 更改bar的距离
     animationBar=(index)=>{
-        const {position} = this.props
+        const {tabPosition} = this.props
         const node = this.listRef.current.childNodes[index]
         const {clientWidth, offsetLeft, clientHeight, offsetTop} = node
         let barStyle = ''
         // 定义不同方向的 bar 如何设置
-        switch(position){
+        switch(tabPosition){
             case 'left' :
             case 'right':
                 barStyle = {
@@ -149,11 +151,11 @@ export default class Tab extends PureComponent {
 
     render(){
         const {state, tabClick, listRef, props} = this
-        const {position, extraTabLeft, extraTabRight, inkStyle, barItemStyle} = props
+        const {tabPosition, extraTabLeft, extraTabRight, inkStyle, barItemStyle} = props
         const {currentChildren, tabItem, barStyle, selectKey} = state
         const {offsetLeft, clientWidth, offsetTop, clientHeight} = barStyle
         return <>
-            <div className={`imitate-tab imitate-tab-${position}`}>
+            <div className={`imitate-tab imitate-tab-${tabPosition}`}>
                 <div className='imitate-tab-header'>
                     {extraTabLeft}
                     <div className='imitate-tab-list' onClick={tabClick} ref={listRef}>

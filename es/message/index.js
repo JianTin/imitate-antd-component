@@ -32,8 +32,10 @@ var defaultProps = {
 }; // 确定类型
 
 function type(typeImg) {
-  return function () {
-    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  return function (options) {
+    if (options === void 0) {
+      options = {};
+    }
 
     var newOptions = _extends({}, defaultProps, {
       img: typeImg
