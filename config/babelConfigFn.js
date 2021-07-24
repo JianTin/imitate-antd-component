@@ -4,8 +4,7 @@ function resultConfig(isESModule){
             [
                 '@babel/preset-env',
                 {
-                    modules: isESModule ? false : 'commonjs',
-                    loose: true
+                    modules: isESModule ? false : 'commonjs'
                 }
             ],
             '@babel/preset-react'

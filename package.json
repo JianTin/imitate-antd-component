@@ -9,6 +9,10 @@
   },
   "main": "lib/index.js",
   "module": "es/index.js",
+  "sideEffects": [
+    "*.css",
+    "*.less"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rimraf dist es lib ",
