@@ -12,7 +12,14 @@ function resultConfig(isESModule){
         plugins: [
             "babel-plugin-inline-import-data-uri",
             "@babel/plugin-transform-object-assign",
-            "@babel/plugin-transform-runtime"
+            "@babel/plugin-transform-runtime",
+            [
+                "babel-plugin-replace-import-extension", {
+                    "extMapping": {
+                        ".jsx": ".js"
+                    }
+                }
+            ]
         ]
     }
 }

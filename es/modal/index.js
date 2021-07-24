@@ -12,7 +12,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 import React, { createRef } from 'react';
 import { createPortal } from 'react-dom';
-import Button from '../button/index.jsx';
+import Button from "../button/index.js";
 
 function RenderModal(Modal) {
   var _class, _temp;
