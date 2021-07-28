@@ -1,9 +1,14 @@
 import React,{createRef} from 'react'
 import {createPortal} from 'react-dom'
 import Button from '../button/index.jsx'
+import {getIndex} from '../assets'
 
 function RenderModal(Modal){
-    return class extends React.Component {
+    return class extends React.PureComponent {
+        constructor(props){
+            super(props)
+            this.init = false
+        }
         static defaultProps = {
             title: '', // title
             visible: null, // 组件隐藏 显示
@@ -21,16 +26,25 @@ function RenderModal(Modal){
             cancelText: '取消',
             getContainer: document.body // 默认渲染到body下
         }
+        // 渲染 dom 元素的设置
+        setContainerPosition(){
+            const {getContainer} = this.props
+            const defaultContainer = document.body
+            // 添加 position  迫使可以将 modal渲染进去
+            if(defaultContainer !== getContainer){
+                const position = getContainer.style.position
+                getContainer.style.position = position ? position : 'relative'
+            }
+        }
         render(){
             const {visible, getContainer} = this.props
             // 当传visible才会渲染
             // 防止触发 Modal componentDidMount 等渲染
             if(typeof visible !== 'boolean' || !getContainer) return null
-            // 添加 position  迫使可以将 modal渲染进去
-            if(document.body !== getContainer){
-                const position = getContainer.style.position
-                getContainer.style.position = position ? position : 'relative'
-            }
+            // visible 为 true，才能做初始化渲染
+            if(visible === true) this.init = true
+            if(this.init === false) return null
+            this.setContainerPosition()
             return <Modal {...this.props} />
         }
     }
@@ -39,6 +53,8 @@ function RenderModal(Modal){
 class Modal extends React.PureComponent {
     constructor(props){
         super(props)
+        // 设置当前的 index
+        this.index = getIndex()
         this.rootRef = createRef()
     }
 
@@ -83,13 +99,6 @@ class Modal extends React.PureComponent {
         }
     }
 
-    // 处理初始化的 modal，决定是显示 还是 隐藏
-    // 绑定 esc 事件
-    componentDidMount(){
-        const {modalRoot, visible} = this.getModalShowAssets()
-        modalRoot.style.display = visible ? 'block' : 'none'
-    }
-
     // visible 为true 显示  root.dispaly = block 开启
     // 不处理 visible 为 false，会影响到 动画
     // 绑定 esc 事件
@@ -99,12 +108,12 @@ class Modal extends React.PureComponent {
     }
 
     render(){
-        const {resultAnimationCss, props, AnimationEndModal, isDestroyContent, maskClick} = this
+        const {resultAnimationCss, props, AnimationEndModal, isDestroyContent, maskClick, index} = this
         const {maskAnimation, modalAnimation} = resultAnimationCss()
         const {cancelEvent, title, footer, okEvent, mask, centered, modalStyle, 
             maskStyle, okText, cancelText, getContainer } = props
         const Element = (
-        <div className='imitate-modal-root' ref={this.rootRef}>
+        <div className='imitate-modal-root' ref={this.rootRef} style={{zIndex: index}}>
             {/* 蒙版 */}
             { mask &&  
                 <div className={`imitate-modal-mask imitate-moda-animationDuration ${maskAnimation}`}

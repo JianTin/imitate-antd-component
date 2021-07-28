@@ -13,22 +13,39 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 import React, { createRef } from 'react';
 import { createPortal } from 'react-dom';
 import Button from "../button/index.js";
+import { getIndex } from '../assets';
 
 function RenderModal(Modal) {
   var _class, _temp;
 
-  return _temp = _class = /*#__PURE__*/function (_React$Component) {
-    _inherits(_class, _React$Component);
+  return _temp = _class = /*#__PURE__*/function (_React$PureComponent) {
+    _inherits(_class, _React$PureComponent);
 
     var _super = _createSuper(_class);
 
-    function _class() {
+    function _class(props) {
+      var _this;
+
       _classCallCheck(this, _class);
 
-      return _super.apply(this, arguments);
+      _this = _super.call(this, props);
+      _this.init = false;
+      return _this;
     }
 
     _createClass(_class, [{
+      key: "setContainerPosition",
+      value: // 渲染 dom 元素的设置
+      function setContainerPosition() {
+        var getContainer = this.props.getContainer;
+        var defaultContainer = document.body; // 添加 position  迫使可以将 modal渲染进去
+
+        if (defaultContainer !== getContainer) {
+          var position = getContainer.style.position;
+          getContainer.style.position = position ? position : 'relative';
+        }
+      }
+    }, {
       key: "render",
       value: function render() {
         var _this$props = this.props,
@@ -36,19 +53,17 @@ function RenderModal(Modal) {
             getContainer = _this$props.getContainer; // 当传visible才会渲染
         // 防止触发 Modal componentDidMount 等渲染
 
-        if (typeof visible !== 'boolean' || !getContainer) return null; // 添加 position  迫使可以将 modal渲染进去
+        if (typeof visible !== 'boolean' || !getContainer) return null; // visible 为 true，才能做初始化渲染
 
-        if (document.body !== getContainer) {
-          var position = getContainer.style.position;
-          getContainer.style.position = position ? position : 'relative';
-        }
-
+        if (visible === true) this.init = true;
+        if (this.init === false) return null;
+        this.setContainerPosition();
         return /*#__PURE__*/React.createElement(Modal, this.props);
       }
     }]);
 
     return _class;
-  }(React.Component), _defineProperty(_class, "defaultProps", {
+  }(React.PureComponent), _defineProperty(_class, "defaultProps", {
     title: '',
     // title
     visible: null,
@@ -80,57 +95,57 @@ function RenderModal(Modal) {
   }), _temp;
 }
 
-var Modal = /*#__PURE__*/function (_React$PureComponent) {
-  _inherits(Modal, _React$PureComponent);
+var Modal = /*#__PURE__*/function (_React$PureComponent2) {
+  _inherits(Modal, _React$PureComponent2);
 
   var _super2 = _createSuper(Modal);
 
   function Modal(props) {
-    var _this;
+    var _this2;
 
     _classCallCheck(this, Modal);
 
-    _this = _super2.call(this, props);
+    _this2 = _super2.call(this, props); // 设置当前的 index
 
-    _defineProperty(_assertThisInitialized(_this), "isDestroyContent", function () {
-      var _this$props2 = _this.props,
-          destroyOnClose = _this$props2.destroyOnClose,
-          visible = _this$props2.visible,
-          children = _this$props2.children;
+    _defineProperty(_assertThisInitialized(_this2), "isDestroyContent", function () {
+      var _this2$props = _this2.props,
+          destroyOnClose = _this2$props.destroyOnClose,
+          visible = _this2$props.visible,
+          children = _this2$props.children;
       if (destroyOnClose && !visible) return null;
       return children;
     });
 
-    _defineProperty(_assertThisInitialized(_this), "maskClick", function () {
-      var _this$props3 = _this.props,
-          maskClosable = _this$props3.maskClosable,
-          cancelEvent = _this$props3.cancelEvent;
+    _defineProperty(_assertThisInitialized(_this2), "maskClick", function () {
+      var _this2$props2 = _this2.props,
+          maskClosable = _this2$props2.maskClosable,
+          cancelEvent = _this2$props2.cancelEvent;
       if (maskClosable) cancelEvent();
     });
 
-    _defineProperty(_assertThisInitialized(_this), "resultAnimationCss", function () {
-      var visible = _this.props.visible;
+    _defineProperty(_assertThisInitialized(_this2), "resultAnimationCss", function () {
+      var visible = _this2.props.visible;
       return {
         maskAnimation: visible ? 'imitate-modal-maskIn' : 'imitate-modal-maskOut',
         modalAnimation: visible ? 'imitate-modal-In' : 'imitate-modal-Out'
       };
     });
 
-    _defineProperty(_assertThisInitialized(_this), "getModalShowAssets", function () {
-      var visible = _this.props.visible;
-      var modalRoot = _this.rootRef.current;
+    _defineProperty(_assertThisInitialized(_this2), "getModalShowAssets", function () {
+      var visible = _this2.props.visible;
+      var modalRoot = _this2.rootRef.current;
       return {
         visible: visible,
         modalRoot: modalRoot
       };
     });
 
-    _defineProperty(_assertThisInitialized(_this), "AnimationEndModal", function () {
-      var _this$getModalShowAss = _this.getModalShowAssets(),
-          modalRoot = _this$getModalShowAss.modalRoot,
-          visible = _this$getModalShowAss.visible;
+    _defineProperty(_assertThisInitialized(_this2), "AnimationEndModal", function () {
+      var _this2$getModalShowAs = _this2.getModalShowAssets(),
+          modalRoot = _this2$getModalShowAs.modalRoot,
+          visible = _this2$getModalShowAs.visible;
 
-      var afterClose = _this.props.afterClose;
+      var afterClose = _this2.props.afterClose;
 
       if (!visible) {
         afterClose();
@@ -138,31 +153,21 @@ var Modal = /*#__PURE__*/function (_React$PureComponent) {
       }
     });
 
-    _this.rootRef = /*#__PURE__*/createRef();
-    return _this;
+    _this2.index = getIndex();
+    _this2.rootRef = /*#__PURE__*/createRef();
+    return _this2;
   } // 通过 虚拟DOm对比。来要求渲染新元素
 
 
   _createClass(Modal, [{
-    key: "componentDidMount",
-    value: // 处理初始化的 modal，决定是显示 还是 隐藏
-    // 绑定 esc 事件
-    function componentDidMount() {
-      var _this$getModalShowAss2 = this.getModalShowAssets(),
-          modalRoot = _this$getModalShowAss2.modalRoot,
-          visible = _this$getModalShowAss2.visible;
-
-      modalRoot.style.display = visible ? 'block' : 'none';
-    } // visible 为true 显示  root.dispaly = block 开启
+    key: "componentDidUpdate",
+    value: // visible 为true 显示  root.dispaly = block 开启
     // 不处理 visible 为 false，会影响到 动画
     // 绑定 esc 事件
-
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      var _this$getModalShowAss3 = this.getModalShowAssets(),
-          modalRoot = _this$getModalShowAss3.modalRoot,
-          visible = _this$getModalShowAss3.visible;
+    function componentDidUpdate() {
+      var _this$getModalShowAss = this.getModalShowAssets(),
+          modalRoot = _this$getModalShowAss.modalRoot,
+          visible = _this$getModalShowAss.visible;
 
       modalRoot.style.display = visible && 'block';
     }
@@ -173,7 +178,8 @@ var Modal = /*#__PURE__*/function (_React$PureComponent) {
           props = this.props,
           AnimationEndModal = this.AnimationEndModal,
           isDestroyContent = this.isDestroyContent,
-          maskClick = this.maskClick;
+          maskClick = this.maskClick,
+          index = this.index;
 
       var _resultAnimationCss = resultAnimationCss(),
           maskAnimation = _resultAnimationCss.maskAnimation,
@@ -192,7 +198,10 @@ var Modal = /*#__PURE__*/function (_React$PureComponent) {
           getContainer = props.getContainer;
       var Element = /*#__PURE__*/React.createElement("div", {
         className: "imitate-modal-root",
-        ref: this.rootRef
+        ref: this.rootRef,
+        style: {
+          zIndex: index
+        }
       }, mask && /*#__PURE__*/React.createElement("div", {
         className: "imitate-modal-mask imitate-moda-animationDuration ".concat(maskAnimation),
         onClick: maskClick,

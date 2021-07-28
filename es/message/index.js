@@ -16,7 +16,6 @@ var warning = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6
 
 var messageOuter = null; // 动画时间
 
-var animationDuration = 500;
 var messageObj = {
   info: type(info),
   error: type(err),
@@ -27,7 +26,7 @@ var messageObj = {
 
 var defaultProps = {
   content: '',
-  duration: 4000,
+  duration: 2000,
   img: ''
 }; // 确定类型
 
@@ -46,15 +45,14 @@ function type(typeImg) {
 
 function deleteMessage(prentDom) {
   // 判断是否存在，存在则删除
-  if (messageOuter.contains(prentDom) && !prentDom.e) {
-    // 防止重复删除
-    prentDom.e = true;
-    var messageElement = prentDom.firstChild;
-    messageElement.classList.add('imitate-message-Out');
-    setTimeout(function () {
-      return messageOuter.removeChild(prentDom);
-    }, animationDuration);
-  }
+  if (prentDom.e) return; // 防止重复删除
+
+  prentDom.e = true;
+  var messageElement = prentDom.firstChild;
+  messageElement.classList.add('imitate-message-Out');
+  messageElement.addEventListener('animationend', function () {
+    messageOuter.removeChild(prentDom);
+  });
 } // 生成外层 outer
 
 
@@ -78,7 +76,10 @@ function Message(_ref) {
     }, duration);
   }, []);
   return /*#__PURE__*/React.createElement("div", {
-    className: "imitate-message-item imitate-message-In"
+    className: "imitate-message-item imitate-message-In",
+    style: {
+      zIndex: 1000
+    }
   }, /*#__PURE__*/React.createElement("div", {
     className: "imitate-message-icon"
   }, " ", /*#__PURE__*/React.createElement("img", {

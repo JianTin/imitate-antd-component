@@ -1,4 +1,5 @@
 import React,{PureComponent, Component,Children as ChildrenFN, createRef} from 'react'
+import {resultChildrenArr} from '../assets'
 
 export default class Tab extends PureComponent {
     constructor(props){
@@ -18,6 +19,7 @@ export default class Tab extends PureComponent {
                 clientHeight: ''
             }
         }
+        this.resultChildrenArr = resultChildrenArr.bind(this)
     }
     static defaultProps = {
         defaultKey: '', // 默认 key
@@ -35,10 +37,10 @@ export default class Tab extends PureComponent {
         this.initGetChildrenList()
     }
     componentDidUpdate(){
-        const {props, state, resultListArray, changSelectTab, initGetChildrenList, storePosition} = this
+        const {props, state, resultChildrenArr, changSelectTab, initGetChildrenList, storePosition} = this
         const {activeKey, tabPosition} = props
         const {selectKey, tabItem} = state
-        const listLength = resultListArray().length
+        const listLength = resultChildrenArr().length
         // activeKey有，并且 内部和外部的 key 不同，更新
         if(activeKey && activeKey !== selectKey){
             changSelectTab(activeKey)
@@ -54,16 +56,10 @@ export default class Tab extends PureComponent {
         }
     }
 
-    // 返回 list 数组
-    resultListArray = ()=>{
-        const {children} = this.props
-        return Array.isArray(children) ? children : [children]
-    }
-
     // 获取children，对children做操控
     initGetChildrenList = ()=>{
-        const {initSelect, resultListArray} = this
-        let list = resultListArray()
+        const {initSelect, resultChildrenArr} = this
+        let list = resultChildrenArr()
         let tabItem = []
         ChildrenFN.forEach(list ,({key, props})=>{
             // 拿到 TabPane 的key、tab、children

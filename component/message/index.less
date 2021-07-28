@@ -15,6 +15,21 @@
         box-shadow: 0px 0px 20px rgba(0,0,0,.2);
         display: flex;
         align-items: center;
+        &.imitate-message-In {
+            animation-name: slidein;
+            transform: translateY(5px);
+            animation-duration: 0.4s;
+        }
+        &.imitate-message-Out {
+            animation-name: slideout;
+            animation-duration: 0.3s;
+            animation-fill-mode: forwards;
+            transition: all .4s;
+            height: 0;
+            padding: 0;
+            margin: 0 auto;
+            border-width: 0px;
+        }
     }
     .imitate-message-icon {
         display: inline-block;
@@ -30,22 +45,7 @@
         display: inline-block;
     }
 }
-.imitate-message-In {
-    animation-name: slidein;
-    transform: translateY(5px);
-    animation-duration: 0.5s;
-}
-.imitate-message-Out {
-    animation-name: slideout;
-    transform: translateY(0px);
-    animation-duration: .4s;
-    transition: all .4s;
-    height: 0;
-    padding: 0;
-    margin: 0 auto;
-    overflow: hidden;
-    border-width: 0px;
-}
+
 @keyframes slidein {
     from {
       transform: translateY(0); 
@@ -65,7 +65,7 @@
     }
   
     to {
-        transform: translateY(0); 
+        transform: translateY(0);
         opacity:0;
     }
   }

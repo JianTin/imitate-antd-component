@@ -27,6 +27,29 @@
       -ms-flex-align: center;
           align-items: center;
 }
+.imitate-message-root .imitate-message-item.imitate-message-In {
+  -webkit-animation-name: slidein;
+          animation-name: slidein;
+  -webkit-transform: translateY(5px);
+      -ms-transform: translateY(5px);
+          transform: translateY(5px);
+  -webkit-animation-duration: 0.4s;
+          animation-duration: 0.4s;
+}
+.imitate-message-root .imitate-message-item.imitate-message-Out {
+  -webkit-animation-name: slideout;
+          animation-name: slideout;
+  -webkit-animation-duration: 0.3s;
+          animation-duration: 0.3s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  height: 0;
+  padding: 0;
+  margin: 0 auto;
+  border-width: 0px;
+}
 .imitate-message-root .imitate-message-icon {
   display: inline-block;
   font-size: 0;
@@ -39,31 +62,6 @@
   color: black;
   font-size: 14px;
   display: inline-block;
-}
-.imitate-message-In {
-  -webkit-animation-name: slidein;
-          animation-name: slidein;
-  -webkit-transform: translateY(5px);
-      -ms-transform: translateY(5px);
-          transform: translateY(5px);
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-}
-.imitate-message-Out {
-  -webkit-animation-name: slideout;
-          animation-name: slideout;
-  -webkit-transform: translateY(0px);
-      -ms-transform: translateY(0px);
-          transform: translateY(0px);
-  -webkit-animation-duration: 0.4s;
-          animation-duration: 0.4s;
-  -webkit-transition: all 0.4s;
-  transition: all 0.4s;
-  height: 0;
-  padding: 0;
-  margin: 0 auto;
-  overflow: hidden;
-  border-width: 0px;
 }
 @-webkit-keyframes slidein {
   from {

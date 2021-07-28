@@ -16,6 +16,7 @@ function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflec
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 import React, { PureComponent, Component, Children as ChildrenFN, createRef } from 'react';
+import { resultChildrenArr } from '../assets';
 
 var Tab = /*#__PURE__*/function (_PureComponent) {
   _inherits(Tab, _PureComponent);
@@ -29,17 +30,12 @@ var Tab = /*#__PURE__*/function (_PureComponent) {
 
     _this = _super.call(this, _props);
 
-    _defineProperty(_assertThisInitialized(_this), "resultListArray", function () {
-      var children = _this.props.children;
-      return Array.isArray(children) ? children : [children];
-    });
-
     _defineProperty(_assertThisInitialized(_this), "initGetChildrenList", function () {
       var _assertThisInitialize = _assertThisInitialized(_this),
           initSelect = _assertThisInitialize.initSelect,
-          resultListArray = _assertThisInitialize.resultListArray;
+          resultChildrenArr = _assertThisInitialize.resultChildrenArr;
 
-      var list = resultListArray();
+      var list = resultChildrenArr();
       var tabItem = [];
       ChildrenFN.forEach(list, function (_ref) {
         var key = _ref.key,
@@ -169,6 +165,7 @@ var Tab = /*#__PURE__*/function (_PureComponent) {
         clientHeight: ''
       }
     };
+    _this.resultChildrenArr = resultChildrenArr.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -183,7 +180,7 @@ var Tab = /*#__PURE__*/function (_PureComponent) {
     value: function componentDidUpdate() {
       var props = this.props,
           state = this.state,
-          resultListArray = this.resultListArray,
+          resultChildrenArr = this.resultChildrenArr,
           changSelectTab = this.changSelectTab,
           initGetChildrenList = this.initGetChildrenList,
           storePosition = this.storePosition;
@@ -191,7 +188,7 @@ var Tab = /*#__PURE__*/function (_PureComponent) {
           tabPosition = props.tabPosition;
       var selectKey = state.selectKey,
           tabItem = state.tabItem;
-      var listLength = resultListArray().length; // activeKey有，并且 内部和外部的 key 不同，更新
+      var listLength = resultChildrenArr().length; // activeKey有，并且 内部和外部的 key 不同，更新
 
       if (activeKey && activeKey !== selectKey) {
         changSelectTab(activeKey);
@@ -207,7 +204,7 @@ var Tab = /*#__PURE__*/function (_PureComponent) {
       if (listLength !== tabItem.length) {
         initGetChildrenList();
       }
-    } // 返回 list 数组
+    } // 获取children，对children做操控
 
   }, {
     key: "render",

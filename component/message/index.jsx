@@ -4,10 +4,10 @@ import err from './image/ava_error.png'
 import success from './image/color-success.png'
 import info from './image/info.png'
 import warning from './image/warning.png'
+
 // outer Message
 let messageOuter = null
 // 动画时间
-const animationDuration = 500
 const messageObj = {
   info: type(info),
   error: type(err),
@@ -18,7 +18,7 @@ const messageObj = {
 // 用户可以定义的类型
 const defaultProps = {
   content: '',
-  duration: 4000,
+  duration: 2000,
   img: ''
 }
 // 确定类型
@@ -32,13 +32,14 @@ function type(typeImg){
 // 删除
 function deleteMessage(prentDom){
   // 判断是否存在，存在则删除
-  if(messageOuter.contains(prentDom) && !(prentDom.e)){
+  if(prentDom.e) return
     // 防止重复删除
     prentDom.e = true
     const messageElement = prentDom.firstChild
     messageElement.classList.add('imitate-message-Out')
-    setTimeout(()=>messageOuter.removeChild(prentDom), animationDuration)
-  }
+    messageElement.addEventListener('animationend', ()=>{
+      messageOuter.removeChild(prentDom)
+    })
 }
 
 // 生成外层 outer
@@ -57,10 +58,10 @@ function Message({parentDom, options}){
       deleteMessage(parentDom)
     }, duration)
   }, [])
-  return <div className={`imitate-message-item imitate-message-In`}>
-    <div className='imitate-message-icon'> <img src={img} /> </div>
-    <div className='imitate-message-content'>{content}</div>
-  </div>
+  return<div className={`imitate-message-item imitate-message-In`} style={{zIndex: 1000}} >
+      <div className='imitate-message-icon'> <img src={img} /> </div>
+      <div className='imitate-message-content'>{content}</div>
+    </div>
 }
 
 // 生成 message

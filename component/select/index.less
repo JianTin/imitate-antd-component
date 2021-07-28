@@ -1,0 +1,95 @@
+
+.imitate-select {
+    width: 150px;
+    padding: 5px 7px;
+    box-sizing: border-box;
+    border: 1px solid #d9d9d9;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow:  0px 0px 0px rgba(0, 0, 0, 0);
+    display: flex;
+    justify-content: space-between;
+    &:hover {
+        border-color: #1890ff;
+    }
+    &:focus {
+        border-color: #1890ff;
+        box-shadow:  0px 0px 5px #188fff5d;
+    }
+    .imitate-select-search {
+        width: 100%;
+        border: 0;
+        outline: 0;
+    }
+    .imitate-select-value {
+        display: inline-block;
+    }
+    img {
+        width: 20px;
+    }
+}
+.imitate-select-list {
+    position: absolute;
+    padding: 5px 0;
+    box-shadow: 0 0 10px #00000044;
+    transform-origin: top;
+    animation-duration: 0.3s;
+    display: none;
+    overflow-y: overlay;
+    max-height: 180px;
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 12px;
+        background-color: #2d2d2d83;
+    }
+    .imitate-select-item {
+        width: 100%;
+        padding: 6px 10px;
+        box-sizing: border-box;
+        background-color: white;
+        transition: background-color 0.2s;
+        font-size: 14px;    
+        cursor: pointer;
+        &:hover {
+            background-color: #F5F5F5;
+        }
+        &.imitate-select-active {
+            background-color: #E6F7FF;
+            font-weight: 600;
+        }
+    }
+}
+
+// 进入动画
+.imitate-select-in {
+    animation-name: imitate-select-in-animation;
+}
+
+// 退出动画
+.imitate-select-out {
+    animation-name: imitate-select-out-animation;
+}
+
+@keyframes imitate-select-out-animation {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: scaleY(0.8);
+        opacity: 0;
+    }
+}
+@keyframes imitate-select-in-animation {
+    from {
+        transform: scaleY(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

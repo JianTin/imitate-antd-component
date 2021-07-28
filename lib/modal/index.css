@@ -43,7 +43,6 @@
   font-weight: 600;
 }
 .imitate-modal-root .imitate-modal-outer .imitate-modal-cancel {
-  z-index: 10;
   position: absolute;
   right: 0;
   top: 0;

@@ -1,0 +1,133 @@
+.imitate-select {
+  width: 150px;
+  padding: 5px 7px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 1px solid #d9d9d9;
+  font-size: 14px;
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  -webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+          box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.imitate-select:hover {
+  border-color: #1890ff;
+}
+.imitate-select:focus {
+  border-color: #1890ff;
+  -webkit-box-shadow: 0px 0px 5px rgba(24,143,255,0.36471);
+          box-shadow: 0px 0px 5px rgba(24,143,255,0.36471);
+}
+.imitate-select .imitate-select-search {
+  width: 100%;
+  border: 0;
+  outline: 0;
+}
+.imitate-select .imitate-select-value {
+  display: inline-block;
+}
+.imitate-select img {
+  width: 20px;
+}
+.imitate-select-list {
+  position: absolute;
+  padding: 5px 0;
+  -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.26667);
+          box-shadow: 0 0 10px rgba(0,0,0,0.26667);
+  -webkit-transform-origin: top;
+      -ms-transform-origin: top;
+          transform-origin: top;
+  -webkit-animation-duration: 0.3s;
+          animation-duration: 0.3s;
+  display: none;
+  overflow-y: overlay;
+  max-height: 180px;
+}
+.imitate-select-list::-webkit-scrollbar {
+  width: 5px;
+}
+.imitate-select-list::-webkit-scrollbar-thumb {
+  border-radius: 12px;
+  background-color: rgba(45,45,45,0.51373);
+}
+.imitate-select-list .imitate-select-item {
+  width: 100%;
+  padding: 6px 10px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-color: white;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+  font-size: 14px;
+  cursor: pointer;
+}
+.imitate-select-list .imitate-select-item:hover {
+  background-color: #F5F5F5;
+}
+.imitate-select-list .imitate-select-item.imitate-select-active {
+  background-color: #E6F7FF;
+  font-weight: 600;
+}
+.imitate-select-in {
+  -webkit-animation-name: imitate-select-in-animation;
+          animation-name: imitate-select-in-animation;
+}
+.imitate-select-out {
+  -webkit-animation-name: imitate-select-out-animation;
+          animation-name: imitate-select-out-animation;
+}
+@-webkit-keyframes imitate-select-out-animation {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    -webkit-transform: scaleY(0.8);
+            transform: scaleY(0.8);
+    opacity: 0;
+  }
+}
+@keyframes imitate-select-out-animation {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    -webkit-transform: scaleY(0.8);
+            transform: scaleY(0.8);
+    opacity: 0;
+  }
+}
+@-webkit-keyframes imitate-select-in-animation {
+  from {
+    -webkit-transform: scaleY(0.8);
+            transform: scaleY(0.8);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes imitate-select-in-animation {
+  from {
+    -webkit-transform: scaleY(0.8);
+            transform: scaleY(0.8);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+}

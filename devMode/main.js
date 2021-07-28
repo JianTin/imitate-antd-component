@@ -1,24 +1,22 @@
 import React, { useState } from 'react'
 import {render} from 'react-dom'
-import {Button, Tab} from '../component/index'
+import {Select, Message} from '../component/index'
 
-const {TabPane} = Tab
+const {Option} = Select
 function App(){
-    function chang(key){
-       // setActiveKey(key)
+    const [value, setValue] = useState('1')
+    const [array, setArray] = useState(['1', '2'])
+    function change(newVal){
+        setValue(newVal)
     }
-
     return (
-        <div>
-            <Tab onChange={chang}>
-                <TabPane tab="Tab 1" key="1">
-                    hello 1
-                </TabPane>
-                <TabPane tab="Tabs 3123333334" key="2">
-                    hello 2
-                </TabPane>
-            </Tab>
-        </div>
+        <>
+            <Select value={value} onChange={change}>
+                {
+                    array.map((item)=> <Option value={item} key={item}>{item}</Option>)
+                }
+            </Select>
+        </>
     )
 }
 render(
