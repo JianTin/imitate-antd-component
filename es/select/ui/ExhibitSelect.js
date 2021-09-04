@@ -11,9 +11,7 @@ function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflec
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 import React, { createRef } from 'react';
-
-/* babel-plugin-inline-import '../image/xiala.png' */
-var selectPng = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAhFBMVEUAAADi4uLHx8fHx8fJycnHx8fHx8fIyMjGxsbHx8fHx8fIyMjHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fGxsbIyMjHx8fHx8fHx8fIyMjIyMjHx8fHx8fHx8fIyMjHx8fHx8fHx8fIyMjHx8eGkWRMAAAAK3RSTlMAAf31C/ntJwXh5xHcyHVDNxvVw6aMW9G8sZJiHp6GbEw7LRZII7ZSNJt8hQ2BOgAAAltJREFUeNrt2Qty2jAUQNFnjG1+CQRCIECA8mmTvP3vrx1AE7UxFsUeW5q5ZwGPAYR0ZQQAAAAAAAAAAAAAAAAAAAAAAMAnUZZFIhLM3GuGA9XBMJy514wS/SM5SMUO57kjqctcT+KKX3EU68lc6pLoWZpJhbJUz2KpS08vuk9SmaeuXvSkLgs1xn2pSH+sxkLq0p6p8dCuaOSDGjPnyEqXgTHvSAU6P9XorqRGx54az5GUFr2pkWZSq/e4yiU9VSP+ITUbJmo8SkmPaiQHqd1LSy9aS18m3WejRuuXlLBtWd9tI9bWyi4VJsZamhF9qJHu5E671N7/GhK9qtFblT6RXjvSmPZEjcFe7rAf243QoH65WGk/lKs2X2LFESb1yuxYCSZMqo2Vhb19e8CKlU/5D592mHjhKzF0IzdbqhUmnrBjJZwwKc7wZHjremw8TBz7T/weTJg4YiXNbrlgehEmpWNlP/AkTByxMuu7HsJ4EyaOWJl0CsNk/tXMjYdJnuy2hR89exUmjrveRzhhkmd7w+Gwtg9Pb7ljZeNhmBQ/oWq95L5TL8PEESuHwjBZiN/sWBl9v7p4GiaO62uaXQ2TuWdh4oiV7urvE9PjMHH89zTu2w1j11gQcj/69sTzMMmTpVasfO/8nQRj9O/2FL0FECbXbuR2rEyDCBPXER5OmDhiZRlOmDhiJVFjKuGxft8BhUlhrAQVJgWxEliYXI2V4MLkSqwEGCZ5dmmIYZIfKyGGSZ5tfHofWwnecTqZTI8CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa8Btta62Po3F+iwAAAABJRU5ErkJggg==";
+import selectPng from '../../image/xiala.png';
 
 var DefaultSelect = /*#__PURE__*/function (_React$PureComponent) {
   _inherits(DefaultSelect, _React$PureComponent);

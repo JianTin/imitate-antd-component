@@ -1,0 +1,39 @@
+.imitate-mask {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.imitate-mask.imitate-maskanimationIn {
+  -webkit-animation-name: animation-modal-mask;
+          animation-name: animation-modal-mask;
+  -webkit-animation-duration: 0.3s;
+          animation-duration: 0.3s;
+  -webkit-animation-direction: normal;
+          animation-direction: normal;
+}
+.imitate-mask.imitate-maskanimationOut {
+  -webkit-animation-name: animation-modal-mask;
+          animation-name: animation-modal-mask;
+  -webkit-animation-duration: 0.3s;
+          animation-duration: 0.3s;
+  animation-direction: reverse;
+}
+@-webkit-keyframes animation-modal-mask {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes animation-modal-mask {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

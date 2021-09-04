@@ -1,4 +1,5 @@
 import React from 'react'
+import {Touch} from '../index'
 import {findDOMNode} from 'react-dom'
 
 export default class Button extends React.Component {
@@ -20,15 +21,17 @@ export default class Button extends React.Component {
 
     render(){
         const {props, handelEvent, animationEnd} = this
-        const {children, type, disabled, danger} = props
-        return <button className={`imitate-btn imitate-btn-${type}`} 
-            onClick={handelEvent}
-            onAnimationEnd={animationEnd}
-            disabled={disabled ? 'true' : null}
-            danger={danger ? 'true' : null}
-        >
-            <span>{children}</span>
-        </button>
+        const {children, type, disabled, danger, className} = props
+        return <Touch eventCall={handelEvent}>
+            <button className={`imitate-btn imitate-btn-${type} ${className}`} 
+                onClick={handelEvent}
+                onAnimationEnd={animationEnd}
+                disabled={disabled ? 'true' : null}
+                danger={danger ? 'true' : null}
+            >
+                <span>{children}</span>
+            </button>
+        </Touch>
     }
 }
 
@@ -36,5 +39,6 @@ Button.defaultProps = {
     type: 'default', // primary / default /  dashed / text / link
     onClick: ()=>{}, // click 事件
     disabled: false, // 禁止
-    danger: false // 危险
+    danger: false, // 危险
+    className: ''
 }

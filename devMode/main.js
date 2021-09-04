@@ -1,22 +1,22 @@
 import React, { useState } from 'react'
 import {render} from 'react-dom'
-import {Select, Message} from '../component/index'
+import {Touch, MobileModal, Modal, Select} from '../component/index'
 
-const {Option} = Select
 function App(){
-    const [value, setValue] = useState('1')
-    const [array, setArray] = useState(['1', '2'])
-    function change(newVal){
-        setValue(newVal)
+    function t(){
+        console.log(123)
     }
     return (
         <>
-            <Select value={value} onChange={change}>
-                {
-                    array.map((item)=> <Option value={item} key={item}>{item}</Option>)
-                }
-            </Select>
+        <Touch eventCall={t}>
+            <button>123</button>
+        </Touch>
+        <Select>
+            <div key='1' value='1'>1</div>
+            <div key='2' value='2'>12</div>
+        </Select>
         </>
+        
     )
 }
 render(

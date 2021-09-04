@@ -58,8 +58,7 @@ var Select = /*#__PURE__*/function (_React$PureComponent) {
       var optionvalue = event.target.attributes.optionvalue.value;
       var _this$props2 = _this.props,
           value = _this$props2.value,
-          onChange = _this$props2.onChange,
-          type = _this$props2.type; // 触发更改的 chang事件
+          onChange = _this$props2.onChange; // 触发更改的 chang事件
 
       if (onChange) onChange(optionvalue); // 当value为空，那么就由 内部来控制
 

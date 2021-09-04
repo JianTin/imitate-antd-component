@@ -3,7 +3,6 @@ const through = require('through2')
 const babel = require('gulp-babel')
 const babelConfigFn = require('./babelConfigFn')
 const concat = require('gulp-concat')
-const uglify = require('gulp-uglify');
 const merge2 = require('merge2')
 const postcss = require('gulp-postcss')
 const postcssPresetEnv = require('postcss-preset-env')
@@ -17,9 +16,17 @@ const {Buffer: {from}} = require('buffer')
 const gulpNotify = require('gulp-notify')
 const browserAsync = require('browser-sync').create()
 var {notify : nodeNotify} = require('node-notifier');
-const compiteLess = require('gulp-less')
+const compileLess = require('gulp-less')
 
-// 返回 js compite 处理流
+task('assetsMove', function(){
+    const notMove = ['.js', '.css', '.less', '.jsx']
+    const moveGlob = ['../component/**/*.*', ...notMove.map( extension => '!../component/**/*'+extension ) ]
+    return src(moveGlob)
+    .pipe(dest('../es'))
+    .pipe(dest('../lib'))
+})
+
+// 返回 js compile 处理流
 function resultJsTaskFn(isESModule){
     const babelConfig = babelConfigFn(isESModule)
     const destFolder = isESModule ? '../es' : '../lib'
@@ -29,18 +36,18 @@ function resultJsTaskFn(isESModule){
 }
 
 // 编译为库形式包
-task('npm-js-compite', function(){
+task('npm-js-compile', function(){
     return merge2(resultJsTaskFn(true), resultJsTaskFn(false))
 })
 
 // 编译为库形式包
-task('npm-css-compite', function(){
+task('npm-css-compile', function(){
     const plugins = [postcssPresetEnv()]
 
     return src('../component/**/*.less')
     .pipe(dest('../lib'))
     .pipe(dest('../es'))
-    .pipe(compiteLess())
+    .pipe(compileLess())
     .pipe(postcss(plugins))
     .pipe(dest('../lib'))
     .pipe(dest('../es'))
@@ -56,20 +63,22 @@ task('distCss', function(){
     ]
     // 打包为一个 css 压缩文件
     return  src('../component/**/*.less')
-    .pipe(compiteLess())
+    .pipe(compileLess())
     .pipe(concat('index.css'))
     .pipe(postcss(plugins))
     .pipe(dest('../dist'))
 })
 
 // 编译库资源
-task('compite',
-    parallel('npm-css-compite','npm-js-compite', 'distCss' )
+task('compile',
+    parallel('npm-css-compile','npm-js-compile', 'distCss', 'assetsMove' )
 )
 
 // dev环境打包
 task('dev-js', function bundleDev(){
-            return browserify(join(dirFloder, '/devMode/main.js'))
+            return browserify(join(dirFloder, '/devMode/main.js'), {
+                transform: ['imgurify']
+            })
             .transform(babelify, babelConfigFn(false))
             .bundle()
             .pipe(source('main.js'))

@@ -10,7 +10,6 @@ function resultConfig(isESModule){
             '@babel/preset-react'
         ],
         plugins: [
-            "babel-plugin-inline-import-data-uri",
             "@babel/plugin-transform-object-assign",
             "@babel/plugin-transform-runtime",
             [

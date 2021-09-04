@@ -62,7 +62,7 @@ export default class Select extends React.PureComponent {
     // 点击option
     clickOption = (event)=> {
         const {value: optionvalue} = event.target.attributes.optionvalue
-        const {value, onChange, type} = this.props
+        const {value, onChange} = this.props
         // 触发更改的 chang事件
         if(onChange) onChange(optionvalue)
         // 当value为空，那么就由 内部来控制

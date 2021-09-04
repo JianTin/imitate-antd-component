@@ -1,4 +1,5 @@
 import React,{PureComponent, Component,Children as ChildrenFN, createRef} from 'react'
+import {Touch} from '../index'
 import {resultChildrenArr} from '../assets'
 
 export default class Tab extends PureComponent {
@@ -154,18 +155,20 @@ export default class Tab extends PureComponent {
             <div className={`imitate-tab imitate-tab-${tabPosition}`}>
                 <div className='imitate-tab-header'>
                     {extraTabLeft}
-                    <div className='imitate-tab-list' onClick={tabClick} ref={listRef}>
-                        {
-                            tabItem.map(({key, tab})=>
-                                <div className={`imitate-tab-item ${selectKey === key && 'imitate-tab-item-active'}`} 
-                                    style={barItemStyle}
-                                    key={key} id={key}
-                                >
-                                    {tab}
-                                </div>
-                            )
-                        }
-                    </div>
+                    <Touch eventCall={tabClick}>
+                        <div className='imitate-tab-list' onClick={tabClick} ref={listRef}>
+                            {
+                                tabItem.map(({key, tab})=>
+                                    <div className={`imitate-tab-item ${selectKey === key && 'imitate-tab-item-active'}`} 
+                                        style={barItemStyle}
+                                        key={key} id={key}
+                                    >
+                                        {tab}
+                                    </div>
+                                )
+                            }
+                        </div>
+                    </Touch>
                     {extraTabRight}
                     <div className='imitate-tab-ink-animated'
                         style={{width: clientWidth, left:offsetLeft, height: clientHeight, top: offsetTop, ...inkStyle}}

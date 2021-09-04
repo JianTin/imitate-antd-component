@@ -1,6 +1,7 @@
 import React,{createRef} from 'react'
 import {createPortal} from 'react-dom'
 import Button from '../button/index.jsx'
+import {Touch} from '../index'
 import {getIndex} from '../assets'
 
 function RenderModal(Modal){
@@ -116,16 +117,20 @@ class Modal extends React.PureComponent {
         <div className='imitate-modal-root' ref={this.rootRef} style={{zIndex: index}}>
             {/* 蒙版 */}
             { mask &&  
-                <div className={`imitate-modal-mask imitate-moda-animationDuration ${maskAnimation}`}
-                    onClick={maskClick} style={maskStyle}
-                ></div>
+                <Touch eventCall={maskClick}>
+                    <div className={`imitate-modal-mask imitate-moda-animationDuration ${maskAnimation}`}
+                        onClick={maskClick} style={maskStyle}
+                    ></div>
+                </Touch>
             }
             { /* modal */ }
             <div className={`imitate-modal-outer imitate-moda-animationDuration ${modalAnimation}`} onAnimationEnd={AnimationEndModal} 
                 centered={centered?'true':null} style={modalStyle}
             >
                 { /* cancel */ }
-                <div className='imitate-modal-cancel' onClick={cancelEvent}> <a>x</a> </div>
+                <Touch eventCall={cancelEvent}>
+                    <div className='imitate-modal-cancel' onClick={cancelEvent}> <a>x</a> </div>
+                </Touch>
                 {/* title */ }
                 {title && <div className='imitate-modal-title'>{title}</div>}
                 { /* content */ }

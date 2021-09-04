@@ -1,0 +1,129 @@
+.initate-mobileModalouter {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+}
+.initate-mobileModalouter .initate-mobileModalmask {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+.initate-mobileModalouter .initate-mobileModalmask.initate-mobileModalmask-animationIn {
+  -webkit-animation-name: animation-initate-mobileModalmask;
+          animation-name: animation-initate-mobileModalmask;
+  -webkit-animation-duration: 0.3s;
+          animation-duration: 0.3s;
+  -webkit-animation-direction: normal;
+          animation-direction: normal;
+}
+.initate-mobileModalouter .initate-mobileModalmask.initate-mobileModalmask-animationOut {
+  -webkit-animation-name: animation-initate-mobileModalmask;
+          animation-name: animation-initate-mobileModalmask;
+  -webkit-animation-duration: 0.3s;
+          animation-duration: 0.3s;
+  animation-direction: reverse;
+}
+.initate-mobileModalouter .initate-mobileModalcontent {
+  position: absolute;
+  bottom: 0;
+  background-color: white;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0 12px;
+  padding-bottom: 14px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.initate-mobileModalouter .initate-mobileModalcontent.initate-mobileModalcontent-animationIn {
+  -webkit-animation-name: animation-initate-mobileModalcontent;
+          animation-name: animation-initate-mobileModalcontent;
+  -webkit-animation-duration: 0.3s;
+          animation-duration: 0.3s;
+  -webkit-animation-direction: normal;
+          animation-direction: normal;
+}
+.initate-mobileModalouter .initate-mobileModalcontent.initate-mobileModalcontent-animationOut {
+  -webkit-animation-name: animation-initate-mobileModalcontent;
+          animation-name: animation-initate-mobileModalcontent;
+  -webkit-animation-duration: 0.3s;
+          animation-duration: 0.3s;
+  animation-direction: reverse;
+}
+.initate-mobileModalouter .initate-mobileModalchildren-content {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.initate-mobileModalouter .initate-mobileModalclose {
+  position: absolute;
+  left: 16px;
+  top: 12px;
+}
+.initate-mobileModalouter .initate-mobileModalclose img {
+  width: 18px;
+  vertical-align: bottom;
+}
+.initate-mobileModalouter .initate-mobileModalfooter {
+  color: #FFFFFF;
+  width: 100%;
+  text-align: center;
+}
+.initate-mobileModalouter .initate-mobileModaltitle {
+  color: #333333;
+  font-size: 18px;
+  line-height: 25.2px;
+  text-align: center;
+  margin-top: 12px;
+}
+.initate-mobileModalouter .initate-mobileModaltitle span {
+  display: inline-block;
+}
+@-webkit-keyframes animation-initate-mobileModalmask {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes animation-initate-mobileModalmask {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes animation-initate-mobileModalcontent {
+  from {
+    opacity: 0.3;
+    -webkit-transform: translateY(80%);
+            transform: translateY(80%);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+@keyframes animation-initate-mobileModalcontent {
+  from {
+    opacity: 0.3;
+    -webkit-transform: translateY(80%);
+            transform: translateY(80%);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}

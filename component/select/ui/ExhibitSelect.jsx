@@ -1,5 +1,5 @@
 import React, { createRef } from 'react'
-import selectPng from '../image/xiala.png'
+import selectPng from '../../image/xiala.png'
 
 export default class DefaultSelect extends React.PureComponent {
     constructor(props){

@@ -16,6 +16,7 @@ function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflec
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 import React, { PureComponent, Component, Children as ChildrenFN, createRef } from 'react';
+import { Touch } from '../index';
 import { resultChildrenArr } from '../assets';
 
 var Tab = /*#__PURE__*/function (_PureComponent) {
@@ -230,7 +231,9 @@ var Tab = /*#__PURE__*/function (_PureComponent) {
         className: "imitate-tab imitate-tab-".concat(tabPosition)
       }, /*#__PURE__*/React.createElement("div", {
         className: "imitate-tab-header"
-      }, extraTabLeft, /*#__PURE__*/React.createElement("div", {
+      }, extraTabLeft, /*#__PURE__*/React.createElement(Touch, {
+        eventCall: tabClick
+      }, /*#__PURE__*/React.createElement("div", {
         className: "imitate-tab-list",
         onClick: tabClick,
         ref: listRef
@@ -243,7 +246,7 @@ var Tab = /*#__PURE__*/function (_PureComponent) {
           key: key,
           id: key
         }, tab);
-      })), extraTabRight, /*#__PURE__*/React.createElement("div", {
+      }))), extraTabRight, /*#__PURE__*/React.createElement("div", {
         className: "imitate-tab-ink-animated",
         style: _objectSpread({
           width: clientWidth,

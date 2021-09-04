@@ -13,6 +13,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 import React, { createRef } from 'react';
 import { createPortal } from 'react-dom';
 import Button from "../button/index.js";
+import { Touch } from '../index';
 import { getIndex } from '../assets';
 
 function RenderModal(Modal) {
@@ -202,19 +203,23 @@ var Modal = /*#__PURE__*/function (_React$PureComponent2) {
         style: {
           zIndex: index
         }
-      }, mask && /*#__PURE__*/React.createElement("div", {
+      }, mask && /*#__PURE__*/React.createElement(Touch, {
+        eventCall: maskClick
+      }, /*#__PURE__*/React.createElement("div", {
         className: "imitate-modal-mask imitate-moda-animationDuration ".concat(maskAnimation),
         onClick: maskClick,
         style: maskStyle
-      }), /*#__PURE__*/React.createElement("div", {
+      })), /*#__PURE__*/React.createElement("div", {
         className: "imitate-modal-outer imitate-moda-animationDuration ".concat(modalAnimation),
         onAnimationEnd: AnimationEndModal,
         centered: centered ? 'true' : null,
         style: modalStyle
+      }, /*#__PURE__*/React.createElement(Touch, {
+        eventCall: cancelEvent
       }, /*#__PURE__*/React.createElement("div", {
         className: "imitate-modal-cancel",
         onClick: cancelEvent
-      }, " ", /*#__PURE__*/React.createElement("a", null, "x"), " "), title && /*#__PURE__*/React.createElement("div", {
+      }, " ", /*#__PURE__*/React.createElement("a", null, "x"), " ")), title && /*#__PURE__*/React.createElement("div", {
         className: "imitate-modal-title"
       }, title), /*#__PURE__*/React.createElement("div", {
         className: "imitate-modal-content"

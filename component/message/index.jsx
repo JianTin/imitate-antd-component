@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import {render} from 'react-dom'
-import err from './image/ava_error.png'
-import success from './image/color-success.png'
-import info from './image/info.png'
-import warning from './image/warning.png'
+import err from '../image/ava_error.png'
+import success from '../image/color-success.png'
+import info from '../image/info.png'
+import warning from '../image/warning.png'
 
 // outer Message
 let messageOuter = null

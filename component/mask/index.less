@@ -1,0 +1,30 @@
+
+@animationDuration: 0.3s;
+.imitate-mask {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color:  rgba(0, 0, 0, 0.5);
+    &.imitate-maskanimationIn {
+        animation-name: animation-modal-mask;
+        animation-duration: @animationDuration;
+        animation-direction: normal;
+    }
+    &.imitate-maskanimationOut {
+        animation-name: animation-modal-mask;
+        animation-duration: @animationDuration;
+        animation-direction: reverse;
+    }
+}
+
+
+@keyframes animation-modal-mask {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

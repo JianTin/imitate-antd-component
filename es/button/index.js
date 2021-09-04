@@ -11,6 +11,7 @@ function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflec
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 import React from 'react';
+import { Touch } from '../index';
 import { findDOMNode } from 'react-dom';
 
 var Button = /*#__PURE__*/function (_React$Component) {
@@ -61,14 +62,17 @@ var Button = /*#__PURE__*/function (_React$Component) {
       var children = props.children,
           type = props.type,
           disabled = props.disabled,
-          danger = props.danger;
-      return /*#__PURE__*/React.createElement("button", {
-        className: "imitate-btn imitate-btn-".concat(type),
+          danger = props.danger,
+          className = props.className;
+      return /*#__PURE__*/React.createElement(Touch, {
+        eventCall: handelEvent
+      }, /*#__PURE__*/React.createElement("button", {
+        className: "imitate-btn imitate-btn-".concat(type, " ").concat(className),
         onClick: handelEvent,
         onAnimationEnd: animationEnd,
         disabled: disabled ? 'true' : null,
         danger: danger ? 'true' : null
-      }, /*#__PURE__*/React.createElement("span", null, children));
+      }, /*#__PURE__*/React.createElement("span", null, children)));
     }
   }]);
 
@@ -83,6 +87,7 @@ Button.defaultProps = {
   // click 事件
   disabled: false,
   // 禁止
-  danger: false // 危险
-
+  danger: false,
+  // 危险
+  className: ''
 };
