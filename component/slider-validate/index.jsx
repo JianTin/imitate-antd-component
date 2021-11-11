@@ -42,7 +42,8 @@ class SliderValidate extends Component {
     // 点击滑块时
     sliderDownEvent =(e)=> {
         if(this.isSpin === true || this.sliderType === 'success') return;
-        const {clientX} = compatiblePcMobile(e)
+        const handelInfo = compatiblePcMobile(e)
+        const clientX = e.type.includes('mouse') ? handelInfo.clientX : handelInfo[0].clientX
         this.startSlider = {
             clientX,
             offsetX: e.target.offsetLeft
@@ -56,7 +57,8 @@ class SliderValidate extends Component {
         const {isMove, startSlider, sliderMaxMove} = this
         const {clientX, offsetX} = startSlider
         if(!isMove) return
-        const {clientX: moveX} = compatiblePcMobile(e)
+        const handelInfo = compatiblePcMobile(e)
+        const moveX = e.type.includes('mouse') ? handelInfo.clientX : handelInfo[0].clientX
         // 阻止浏览器翻页
         e.preventDefault()
         // 计算移动距离

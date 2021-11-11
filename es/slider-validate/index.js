@@ -33,10 +33,8 @@ var SliderValidate = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "sliderDownEvent", function (e) {
       if (_this.isSpin === true || _this.sliderType === 'success') return;
-
-      var _compatiblePcMobile = compatiblePcMobile(e),
-          clientX = _compatiblePcMobile.clientX;
-
+      var handelInfo = compatiblePcMobile(e);
+      var clientX = e.type.includes('mouse') ? handelInfo.clientX : handelInfo[0].clientX;
       _this.startSlider = {
         clientX: clientX,
         offsetX: e.target.offsetLeft
@@ -55,10 +53,8 @@ var SliderValidate = /*#__PURE__*/function (_Component) {
       var clientX = startSlider.clientX,
           offsetX = startSlider.offsetX;
       if (!isMove) return;
-
-      var _compatiblePcMobile2 = compatiblePcMobile(e),
-          moveX = _compatiblePcMobile2.clientX; // 阻止浏览器翻页
-
+      var handelInfo = compatiblePcMobile(e);
+      var moveX = e.type.includes('mouse') ? handelInfo.clientX : handelInfo[0].clientX; // 阻止浏览器翻页
 
       e.preventDefault(); // 计算移动距离
 
