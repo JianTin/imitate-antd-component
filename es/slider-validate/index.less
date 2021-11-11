@@ -1,0 +1,78 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+.sliderValidate-outer {
+    width: 300px;
+    padding: 10px;
+    box-sizing: content-box;
+    overflow: hidden;
+    .sliderValidate-img {
+        font-size: 0;
+        position: relative;
+        canvas:nth-of-type(2) {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    }
+    .sliderValidate-slider-outer {
+        width: 100%;
+        line-height: 38px;
+        height: 38px;
+        margin-top: 18px;
+        background-color: #f7f9fa;
+        border: 1px solid #e4e7eb;
+        position: relative;
+        .sliderValidate-slider-text {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            color: #45494c;
+            font-size: 14px;
+        }
+        .sliderValidate-slider-bck {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            box-sizing: border-box;
+            width: 0;
+            transition: border 0.3s;
+            transition: background-color 0.3s;
+            &[data-type=info]{
+                border: 1px solid #1991fa;
+                background-color: #b4dcff;
+            }
+            &[data-type=success]{
+                background-color: #D2F4EF;
+                border: 1px solid #52CCBA;
+            }
+            &[data-type=error]{
+                background-color: #FCE1E1;
+                border: 1px solid #f57a7a;
+            }
+        }
+        .sliderValidate-slider {
+            height: 100%;
+            width: 40px;
+            background-color: white;
+            box-shadow: 0px 0px 5px #CBCED1;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: background-color 0.3s;
+            border-radius: 3px;
+            overflow: hidden;
+            &[data-type=info]{
+                background-color:#1991fa;
+            }
+            &[data-type=error]{
+                background-color: #f57a7a;
+            }
+            &[data-type=success]{
+                background-color: #52CCBA;
+            }
+        }
+    }
+}

@@ -6,26 +6,6 @@
   width: 100%;
   height: 100%;
 }
-.initate-mobileModalouter .initate-mobileModalmask {
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-}
-.initate-mobileModalouter .initate-mobileModalmask.initate-mobileModalmask-animationIn {
-  -webkit-animation-name: animation-initate-mobileModalmask;
-          animation-name: animation-initate-mobileModalmask;
-  -webkit-animation-duration: 0.3s;
-          animation-duration: 0.3s;
-  -webkit-animation-direction: normal;
-          animation-direction: normal;
-}
-.initate-mobileModalouter .initate-mobileModalmask.initate-mobileModalmask-animationOut {
-  -webkit-animation-name: animation-initate-mobileModalmask;
-          animation-name: animation-initate-mobileModalmask;
-  -webkit-animation-duration: 0.3s;
-          animation-duration: 0.3s;
-  animation-direction: reverse;
-}
 .initate-mobileModalouter .initate-mobileModalcontent {
   position: absolute;
   bottom: 0;

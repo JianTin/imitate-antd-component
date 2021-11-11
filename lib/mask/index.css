@@ -1,3 +1,6 @@
+.imitate-mask-outer {
+  position: relative;
+}
 .imitate-mask {
   width: 100%;
   height: 100%;
@@ -21,6 +24,52 @@
           animation-duration: 0.3s;
   animation-direction: reverse;
 }
+.imitate-spin-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-transform-origin: left top;
+      -ms-transform-origin: left top;
+          transform-origin: left top;
+  width: 22px;
+  line-height: 0;
+  -webkit-animation-name: animation-spain-container;
+          animation-name: animation-spain-container;
+  -webkit-animation-duration: 1.4s;
+          animation-duration: 1.4s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+.imitate-spin-container .imitate-spin {
+  display: inline-block;
+  -webkit-animation-name: animation-spin;
+          animation-name: animation-spin;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+}
+.imitate-spin-container .imitate-spin:nth-of-type(2n) {
+  margin-left: 6px;
+}
+.imitate-spin-container .imitate-spin:nth-of-type(3) {
+  margin-top: 6px;
+}
+.imitate-spin-container .imitate-spin:nth-of-type(4) {
+  margin-top: 6px;
+}
 @-webkit-keyframes animation-modal-mask {
   from {
     opacity: 0;
@@ -35,5 +84,41 @@
   }
   to {
     opacity: 1;
+  }
+}
+@-webkit-keyframes animation-spain-container {
+  from {
+    -webkit-transform: rotate(0deg) translate(-50%, -50%);
+            transform: rotate(0deg) translate(-50%, -50%);
+  }
+  to {
+    -webkit-transform: rotate(360deg) translate(-50%, -50%);
+            transform: rotate(360deg) translate(-50%, -50%);
+  }
+}
+@keyframes animation-spain-container {
+  from {
+    -webkit-transform: rotate(0deg) translate(-50%, -50%);
+            transform: rotate(0deg) translate(-50%, -50%);
+  }
+  to {
+    -webkit-transform: rotate(360deg) translate(-50%, -50%);
+            transform: rotate(360deg) translate(-50%, -50%);
+  }
+}
+@-webkit-keyframes animation-spin {
+  from {
+    background-color: #F8F8F8;
+  }
+  to {
+    background-color: #a1a1a1;
+  }
+}
+@keyframes animation-spin {
+  from {
+    background-color: #F8F8F8;
+  }
+  to {
+    background-color: #a1a1a1;
   }
 }

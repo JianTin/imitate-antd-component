@@ -6,3 +6,4 @@ export { default as Select } from "./select/index.js";
 export { default as Touch } from "./touch/index.js";
 export { default as MobileModal } from "./mobileModal/index.js";
 export { default as Mask } from "./mask/index.js";
+export { default as SliderValidate } from "./slider-validate/index.js";

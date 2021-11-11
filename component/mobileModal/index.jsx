@@ -2,11 +2,10 @@ import React,{useRef, useLayoutEffect} from "react";
 import {createPortal} from 'react-dom'
 import {getIndex} from '../assets'
 import close from '../image/close.png'
-import {Button} from '../index'
-import {Touch} from '../index'
+import {Button,Touch, Mask} from '../index'
 
 const body = document.querySelector('body')
-const animationArray = ['initate-mobileModalmask-animationIn', 'initate-mobileModalmask-animationOut', 'initate-mobileModalcontent-animationIn', 'initate-mobileModalcontent-animationOut']
+const animationArray = ['initate-mobileModalcontent-animationIn', 'initate-mobileModalcontent-animationOut']
 const index = getIndex()
 const Modal = function(
     {children, visible = false, onCancel=()=>{}, title, footer=true, className='', footerText='确认', header=true}
@@ -41,15 +40,13 @@ const Modal = function(
 
     // 根据 visible 返回动画 类名
     function resultAnimation() {
-        return visible ? {mask: 'initate-mobileModalmask-animationIn', content: 'initate-mobileModalcontent-animationIn'} : 
-        {mask: 'initate-mobileModalmask-animationOut', content: 'initate-mobileModalcontent-animationOut'}
+        return visible ? {content: 'initate-mobileModalcontent-animationIn'} : 
+        {content: 'initate-mobileModalcontent-animationOut'}
     }
 
-    const {mask, content} = resultAnimation()
+    const {content} = resultAnimation()
     const ModalElemet = <div className={`initate-mobileModalouter ${className}`} ref={ModalDom} style={{zIndex: index}}>
-        <Touch eventCall={onCancel}>
-            <div className={`initate-mobileModalmask ${mask}`}></div>
-        </Touch>
+        <Mask eventCall={onCancel} visible={visible}/>
         <div className={`initate-mobileModalcontent ${content}`} onAnimationEnd={animationEnd}>
             {
                 header && <>

@@ -17,6 +17,7 @@ const gulpNotify = require('gulp-notify')
 const browserAsync = require('browser-sync').create()
 var {notify : nodeNotify} = require('node-notifier');
 const compileLess = require('gulp-less')
+const {readdirSync} = require('fs')
 
 task('assetsMove', function(){
     const notMove = ['.js', '.css', '.less', '.jsx']
@@ -85,20 +86,44 @@ task('dev-js', function bundleDev(){
             .pipe(dest('../dist'))
         }
 )
+task('dev-css', function (){
+    const plugins = [
+        postcssPresetEnv(),
+        cssnano(
+            {preset: 'default'}
+        )
+    ]
+    return src('../devMode/**/*.less')
+    .pipe(compileLess())
+    .pipe(postcss(plugins))
+    .pipe(concat('dev.css'))
+    .pipe(dest('../dist'))
+})
 
 // 运行 dev 环境的资源 和 html
-task('dev', parallel('distCss', 'dev-js',
+task('dev', series('distCss', 'dev-js', 'dev-css',
     function initHtml(){
             // 打开服务
             browserAsync.init({
                 server: '../dist'
             })
+            const getDistDir = readdirSync(join(dirFloder, '/dist'))
+            const distCssArray = getDistDir.filter(name=>name.includes('.css'))
+            const distJsArray = getDistDir.filter(name=>name.includes('.js'))
             // 生成 html
             return src('../assets/*.html')
             .pipe(through.obj(function (chunk, encodind, cb){
                 let htmlStr = chunk.contents.toString()
-                htmlStr = htmlStr.replace('<!-- css -->', "<link href='./index.css' rel='stylesheet' />")
-                htmlStr = htmlStr.replace('<!-- js -->', "<script src='./main.js'></script>")
+                htmlStr = htmlStr.replace('<!-- css -->', distCssArray.reduce((prev, cssName)=>{
+                    if(prev) prev += '\n' ;
+                    prev += `<link href='./${cssName}' rel='stylesheet' />`
+                    return prev
+                }, ''))
+                htmlStr = htmlStr.replace('<!-- js -->', distJsArray.reduce((prev, jsName)=>{
+                    if(prev) prev += '\n' ;
+                    prev += `<script src='./${jsName}'></script>`
+                    return prev
+                }, ''))
                 chunk.contents = from(htmlStr)
                 cb(null, chunk)
             }))
@@ -121,5 +146,8 @@ if(process.env.NODE_ENV === 'development'){
     )
     watch(['../component/**/*.less'],
         series('distCss','reload')
+    )
+    watch(['../devMode/**/*.less'], 
+        series('dev-css', 'reload')
     )
 }

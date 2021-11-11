@@ -2,10 +2,9 @@ import React, { useRef, useLayoutEffect } from "react";
 import { createPortal } from 'react-dom';
 import { getIndex } from '../assets';
 import close from '../image/close.png';
-import { Button } from '../index';
-import { Touch } from '../index';
+import { Button, Touch, Mask } from '../index';
 var body = document.querySelector('body');
-var animationArray = ['initate-mobileModalmask-animationIn', 'initate-mobileModalmask-animationOut', 'initate-mobileModalcontent-animationIn', 'initate-mobileModalcontent-animationOut'];
+var animationArray = ['initate-mobileModalcontent-animationIn', 'initate-mobileModalcontent-animationOut'];
 var index = getIndex();
 
 var Modal = function Modal(_ref) {
@@ -59,16 +58,13 @@ var Modal = function Modal(_ref) {
 
   function resultAnimation() {
     return visible ? {
-      mask: 'initate-mobileModalmask-animationIn',
       content: 'initate-mobileModalcontent-animationIn'
     } : {
-      mask: 'initate-mobileModalmask-animationOut',
       content: 'initate-mobileModalcontent-animationOut'
     };
   }
 
   var _resultAnimation = resultAnimation(),
-      mask = _resultAnimation.mask,
       content = _resultAnimation.content;
 
   var ModalElemet = /*#__PURE__*/React.createElement("div", {
@@ -77,11 +73,10 @@ var Modal = function Modal(_ref) {
     style: {
       zIndex: index
     }
-  }, /*#__PURE__*/React.createElement(Touch, {
-    eventCall: onCancel
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "initate-mobileModalmask ".concat(mask)
-  })), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement(Mask, {
+    eventCall: onCancel,
+    visible: visible
+  }), /*#__PURE__*/React.createElement("div", {
     className: "initate-mobileModalcontent ".concat(content),
     onAnimationEnd: animationEnd
   }, header && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
